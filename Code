@@ -1,0 +1,102 @@
+### 2. C++ Source Code (`practical_02.cpp`)
+
+#include <iostream>
+#include <string>
+#include <iomanip>
+
+using namespace std;
+
+class BankAccount {
+private:
+    // PRIVATE ACCESS SPECIFIER:
+    // These members are hidden from outside the class to protect sensitive 
+    // data (encapsulation). Direct modification from main() is prevented.
+    string accountNumber;
+    string accountHolder;
+    double balance;
+
+public:
+    // PUBLIC ACCESS SPECIFIER:
+    // These member functions provide a controlled interface for the outside 
+    // world to interact with the private data members.
+
+    // Parameterized Constructor with validation
+    BankAccount(string accNum, string holder, double initialBalance) {
+        accountNumber = accNum;
+        accountHolder = holder;
+        if (initialBalance >= 0.0) {
+            balance = initialBalance;
+        } else {
+            balance = 0.0;
+            cout << "[Warning] Initial balance cannot be negative for " 
+                 << holder << ". Setting balance to 0.0.\n";
+        }
+    }
+
+    // Public member function to deposit money
+    void deposit(double amount) {
+        if (amount > 0.0) {
+            balance += amount;
+            cout << "Successfully deposited INR " << fixed << setprecision(2) 
+                 << amount << " into account " << accountNumber << ".\n";
+        } else {
+            cout << "[Error] Deposit amount must be positive!\n";
+        }
+    }
+
+    // Public member function to withdraw money with validation
+    void withdraw(double amount) {
+        if (amount <= 0.0) {
+            cout << "[Error] Withdrawal amount must be positive!\n";
+            return;
+        }
+        if (amount <= balance) {
+            balance -= amount;
+            cout << "Successfully withdrew INR " << fixed << setprecision(2) 
+                 << amount << " from account " << accountNumber << ".\n";
+        } else {
+            cout << "[Error] Insufficient funds in account " << accountNumber 
+                 << " for withdrawal of INR " << amount << "!\n";
+        }
+    }
+
+    // Public member function to display account details
+    void displayAccountDetails() const {
+        cout << "----------------------------------------\n";
+        cout << "Account Number    : " << accountNumber << "\n";
+        cout << "Account Holder    : " << accountHolder << "\n";
+        cout << "Current Balance   : INR " << fixed << setprecision(2) << balance << "\n";
+        cout << "----------------------------------------\n";
+    }
+};
+
+int main() {
+    cout << "========================================\n";
+    cout << " RSSOFTTECS - CLASSES & ACCESS DEMO     \n";
+    cout << "========================================\n\n";
+
+    // Create at least two objects of BankAccount
+    cout << "[Creating Account 1]\n";
+    BankAccount acc1("ACC1001", "Aarav Sharma", 5000.00);
+    acc1.displayAccountDetails();
+
+    cout << "\n[Creating Account 2 (with negative initial balance check)]\n";
+    BankAccount acc2("ACC1002", "Priya Verma", -500.00);
+    acc2.displayAccountDetails();
+
+    // Demonstrate member functions on Account 1
+    cout << "\n--- Performing Operations on Account 1 ---\n";
+    acc1.deposit(1500.50);
+    acc1.withdraw(2000.00);
+    cout << "Updated Details for Account 1:\n";
+    acc1.displayAccountDetails();
+
+    // Demonstrate member functions on Account 2 (including failed withdrawal)
+    cout << "\n--- Performing Operations on Account 2 ---\n";
+    acc2.deposit(3000.00);
+    acc2.withdraw(5000.00); // Should fail due to insufficient funds
+    cout << "Updated Details for Account 2:\n";
+    acc2.displayAccountDetails();
+
+    return 0;
+}
