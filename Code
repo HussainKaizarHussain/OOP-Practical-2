@@ -71,9 +71,6 @@ public:
 };
 
 int main() {
-    cout << "========================================\n";
-    cout << " RSSOFTTECS - CLASSES & ACCESS DEMO     \n";
-    cout << "========================================\n\n";
 
     // Create at least two objects of BankAccount
     cout << "[Creating Account 1]\n";
