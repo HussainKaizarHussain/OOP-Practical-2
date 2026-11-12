@@ -1,0 +1,34 @@
+[Creating Account 1]
+----------------------------------------
+Account Number    : ACC1001
+Account Holder    : Aarav Sharma
+Current Balance   : INR 5000.00
+----------------------------------------
+
+[Creating Account 2 (with negative initial balance check)]
+[Warning] Initial balance cannot be negative for Priya Verma. Setting balance to 0.0.
+----------------------------------------
+Account Number    : ACC1002
+Account Holder    : Priya Verma
+Current Balance   : INR 0.00
+----------------------------------------
+
+--- Performing Operations on Account 1 ---
+Successfully deposited INR 1500.50 into account ACC1001.
+Successfully withdrew INR 2000.00 from account ACC1001.
+Updated Details for Account 1:
+----------------------------------------
+Account Number    : ACC1001
+Account Holder    : Aarav Sharma
+Current Balance   : INR 4500.50
+----------------------------------------
+
+--- Performing Operations on Account 2 ---
+Successfully deposited INR 3000.00 into account ACC1002.
+[Error] Insufficient funds in account ACC1002 for withdrawal of INR 5000.00!
+Updated Details for Account 2:
+----------------------------------------
+Account Number    : ACC1002
+Account Holder    : Priya Verma
+Current Balance   : INR 3000.00
+----------------------------------------
